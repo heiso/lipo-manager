@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+  redis:
+    image: redis:alpine
+    ports:
+      - ${REDIS_PORT}:6379
+
+  postgres:
+    image: postgres:alpine
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+    volumes:
+      - ./persistent/postgres:/var/lib/postgresql/data
+    ports:
+      - ${POSTGRES_PORT}:5432
+    healthcheck:
+      test: pg_isready -h localhost -p 5432 -q -U ${POSTGRES_USER}
+      interval: 3s
+      timeout: 5s
+      retries: 5
