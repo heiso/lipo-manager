@@ -5,7 +5,6 @@ services:
   - docker
 
 script:
-  - npm ci
   - npm run lint
 
 before_deploy:
