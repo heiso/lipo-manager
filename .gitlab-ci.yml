@@ -1,25 +1,28 @@
+image: node:10
+
 stages:
   - test
   - publish
   - cleanup
 
 test_lint:
-  image: node:10
   stage: test
   script:
-    - npm run ci
+    - npm ci
     - npm run lint
 
 publish_docker:
-  image: docker:latest
+  image: docker:dind
   stage: publish
+  only:
+    - master
   script:
     - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USER} --password-stdin
     - docker build -t ${DOCKER_USER}/${CI_PROJECT_NAME}:$CI_BUILD_REF_NAME .
     - docker push ${DOCKER_USER}/${CI_PROJECT_NAME}:$CI_BUILD_REF_NAME
 
 cleanup:
-  image: docker:latest
+  image: docker:dind
   stage: cleanup
   when: always
   script:
