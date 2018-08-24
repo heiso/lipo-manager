@@ -8,11 +8,11 @@ script:
 
 before_deploy:
   - docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
-  - docker tag "$TRAVIS_REPO_SLUG" "${$TRAVIS_REPO_SLUG}:latest"
-  - docker tag "$TRAVIS_REPO_SLUG" "${$TRAVIS_REPO_SLUG}:${TRAVIS_TAG}"
+  - docker tag "$TRAVIS_REPO_SLUG" "${TRAVIS_REPO_SLUG}:latest"
+  - docker tag "$TRAVIS_REPO_SLUG" "${TRAVIS_REPO_SLUG}:${TRAVIS_TAG}"
   
 deploy:
   provider: script
-  script: docker push "${$TRAVIS_REPO_SLUG}:latest" && docker push "${$TRAVIS_REPO_SLUG}:${TRAVIS_TAG}"
+  script: docker push "${TRAVIS_REPO_SLUG}:latest" && docker push "${TRAVIS_REPO_SLUG}:${TRAVIS_TAG}"
   on:
     branch: master
