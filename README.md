@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/heiso/lipo-manager.svg?branch=master)](https://travis-ci.org/heiso/lipo-manager)
 [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
 # Requirements and Install
