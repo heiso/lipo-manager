@@ -1,10 +1,8 @@
 FROM node:alpine
 
-WORKDIR /usr/app
-COPY src .
-COPY index.js .
-COPY package.json .
-COPY package-lock.json .
+COPY . /app
+
+WORKDIR /app
 
 RUN npm ci
 
