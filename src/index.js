@@ -8,5 +8,5 @@ app.get('/health', (req, res) => {
 })
 
 app.listen(3000, () => {
-  console.log('To the moon')
+  console.log('To the moon I said !')
 })
