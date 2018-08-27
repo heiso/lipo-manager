@@ -1,8 +1,6 @@
 const { gql } = require('apollo-server')
 const GraphQLJSON = require('graphql-type-json')
 const { version } = require('../../package.json')
-const { postgresConnector } = require('../shared/connectors/postgres.connector')
-const { redisConnector } = require('../shared/connectors/redis.connector')
 
 const typeDefs = gql`
   type Resource {
@@ -15,7 +13,6 @@ const typeDefs = gql`
   }
 
   type Query {
-    health: JSON @isPublic
     version: String @isPublic
   }
 
@@ -33,13 +30,6 @@ const typeDefs = gql`
 
 const resolvers = {
   Query: {
-    async health () {
-      return {
-        app: true,
-        resourceDB: await postgresConnector.isConnected(),
-        sessionDB: redisConnector.isConnected
-      }
-    },
     version: () => version
   },
   Mutation: {

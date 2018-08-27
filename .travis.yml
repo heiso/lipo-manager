@@ -9,16 +9,7 @@ before_install:
 
 script:
   - npm run lint
-
-before_deploy:
-  - docker build --tag "$TRAVIS_REPO_SLUG" .
-  - docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
-  - docker tag "$TRAVIS_REPO_SLUG" "${TRAVIS_REPO_SLUG}:latest"
-  - docker tag "$TRAVIS_REPO_SLUG" "${TRAVIS_REPO_SLUG}:${TRAVIS_TAG}"
   
 deploy:
   provider: script
-  script: docker push "${TRAVIS_REPO_SLUG}:latest" && docker push "${TRAVIS_REPO_SLUG}:${TRAVIS_TAG}" && docker rmi "$TRAVIS_REPO_SLUG"
-  on:
-    tags: true
-    branch: master
+  script: bash scripts/deploy.sh
