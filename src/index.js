@@ -1,12 +1,10 @@
-const express = require('express')
-const { version } = require('../package.json')
+const config = require('config')
+const { RedisConnector } = require('./shared/connectors/redis.connector')
+const { PostgresConnector } = require('./shared/connectors/postgres.connector')
 
-const app = express()
+const redisConnector = new RedisConnector(config.get('connectors.redis'))
+const postgresConnector = new PostgresConnector(config.get('connectors.postgres'))
 
-app.get('/health', (req, res) => {
-  res.send(`${version} is healthy`)
-})
-
-app.listen(3000, () => {
-  console.log('To the moon I said !')
-})
+redisConnector.connect()
+postgresConnector.connect()
+require('./express')

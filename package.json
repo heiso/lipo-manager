@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "lint": "standard",
+    "dev": "nodemon --inspect index.js",
     "test": "echo \"Error: no test specified\" && exit 0"
   },
   "repository": {
@@ -18,9 +19,22 @@
   },
   "homepage": "https://github.com/heiso/lipo-manager#readme",
   "devDependencies": {
+    "nodemon": "^1.18.3",
     "standard": "^11.0.1"
   },
   "dependencies": {
-    "express": "^4.16.3"
+    "apollo-server": "^2.0.5",
+    "apollo-server-express": "^2.0.4",
+    "config": "^2.0.1",
+    "cookie-parser": "^1.4.3",
+    "express": "^4.16.3",
+    "graphql": "^0.13.2",
+    "graphql-type-json": "^0.2.1",
+    "helmet": "^3.13.0",
+    "ioredis": "^4.0.0",
+    "lodash": "^4.17.10",
+    "pg": "^7.4.3",
+    "squel": "^5.12.2",
+    "uuid": "^3.3.2"
   }
 }
