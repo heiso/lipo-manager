@@ -16,3 +16,5 @@ services:
   
   postgres:
     image: postgres:alpine
+    volumes:
+      - ./postgres:/var/lib/postgresql/data
